@@ -1,4 +1,4 @@
-Repositório criado para utiliza no challenge de 7 dias da Alura(ONE).
+Repositório criado para utilizar no challenge de 7 dias da Alura(ONE).
 
 1-> No primeiro dia, o desafio foi: reescrever o código abaixo de maneira que ele imprima as informações de maneira correta, que faça sentido e sem erros:
 
