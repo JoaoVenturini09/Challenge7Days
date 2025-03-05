@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <script>
+        // Função principal que executa o programa
+        function listaDeCompras() {
+            let compras = {
+                Frutas: [],
+                Laticínios: [],
+                Congelados: [],
+                Doces: [],
+                Outros: []
+            };
+
+            function adicionarOuRemover() {
+                let adicionar = prompt("Você deseja adicionar ou remover uma comida na sua lista de compras? (adicionar/remover/não)").toLowerCase();
+                
+                if (adicionar === "adicionar") {
+                    adicionarComida();
+                } else if (adicionar === "remover") {
+                    removerComida();
+                } else if (adicionar === "não") {
+                    // Quando o usuário não quiser mais adicionar ou remover itens, exibe a lista agrupada
+                    exibirLista();
+                } else {
+                    alert("Resposta inválida. Por favor, responda com 'adicionar', 'remover' ou 'não'.");
+                    adicionarOuRemover(); // Repete a pergunta se a resposta não for válida
+                }
+            }
+
+            function adicionarComida() {
+                let comida = prompt("Qual comida você deseja inserir?");
+                let categoria = prompt("Em qual categoria essa comida se encaixa? Opções: Frutas, Laticínios, Congelados, Doces, Outros").toLowerCase();
+
+                // Adiciona a comida na categoria correspondente
+                if (categoria === "frutas") {
+                    compras.Frutas.push(comida);
+                } else if (categoria === "laticínios") {
+                    compras.Laticínios.push(comida);
+                } else if (categoria === "congelados") {
+                    compras.Congelados.push(comida);
+                } else if (categoria === "doces") {
+                    compras.Doces.push(comida);
+                } else {
+                    compras.Outros.push(comida);
+                }
+
+                // Chama a função novamente para permitir adicionar ou remover mais itens
+                adicionarOuRemover();
+            }
+
+            function removerComida() {
+                // Verifica se há itens na lista
+                let itensNaLista = [];
+                for (let categoria in compras) {
+                    itensNaLista = itensNaLista.concat(compras[categoria]);
+                }
+
+                if (itensNaLista.length === 0) {
+                    alert("Não há itens na lista para remover.");
+                    adicionarOuRemover();
+                    return;
+                }
+
+                // Exibe os itens presentes na lista
+                let itensString = itensNaLista.join(", ");
+                let itemRemover = prompt("Escolha o item que deseja remover da lista: " + itensString);
+
+                // Procura e remove o item
+                let itemRemovido = false;
+                for (let categoria in compras) {
+                    let index = compras[categoria].indexOf(itemRemover);
+                    if (index !== -1) {
+                        compras[categoria].splice(index, 1); // Remove o item
+                        itemRemovido = true;
+                        break;
+                    }
+                }
+
+                if (itemRemovido) {
+                    alert(`O item "${itemRemover}" foi removido com sucesso!`);
+                } else {
+                    alert("Não foi possível encontrar o item dentro da lista!");
+                }
+
+                // Chama a função novamente para permitir adicionar ou remover mais itens
+                adicionarOuRemover();
+            }
+
+            function exibirLista() {
+                let lista = "Lista de compras:\n";
+                for (let categoria in compras) {
+                    if (compras[categoria].length > 0) {
+                        lista += `${categoria.charAt(0).toUpperCase() + categoria.slice(1)}: ${compras[categoria].join(", ")}\n`;
+                    }
+                }
+                alert(lista);
+            }
+
+            adicionarOuRemover(); // Inicia o ciclo de adicionar ou remover comida
+        }
+    </script>
+</head>
+<body>
+    <h1>Teste de Lista de Compras</h1>
+    <button onclick="listaDeCompras()">Iniciar Lista de Compras</button>
+</body>
+</html>
