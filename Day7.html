@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <script>
+        // Função para somar
+        function soma(a, b) {
+            return a + b;
+        }
+
+        // Função para subtrair
+        function subtracao(a, b) {
+            return a - b;
+        }
+
+        // Função para multiplicar
+        function multiplicacao(a, b) {
+            return a * b;
+        }
+
+        // Função para dividir
+        function divisao(a, b) {
+            if (b === 0) {
+                alert("Não é possível dividir por zero!");
+                return null;
+            }
+            return a / b;
+        }
+
+        // Função para exibir o menu e executar a operação escolhida
+        function calculadora() {
+            let continuar = true;
+            
+            while (continuar) {
+                // Pergunta qual operação o usuário deseja
+                let operacao = prompt("Escolha uma operação:\n1 - Soma\n2 - Subtração\n3 - Multiplicação\n4 - Divisão\n5 - Sair");
+
+                if (operacao === "5") {
+                    alert("Até a próxima!");
+                    continuar = false; // Encerra o loop
+                } else {
+                    let num1 = parseFloat(prompt("Digite o primeiro valor:"));
+                    let num2 = parseFloat(prompt("Digite o segundo valor:"));
+                    
+                    // Verifica se os valores inseridos são números válidos
+                    if (isNaN(num1) || isNaN(num2)) {
+                        alert("Por favor, insira números válidos.");
+                        continue;
+                    }
+                    
+                    let resultado;
+                    
+                    // Executa a operação escolhida
+                    switch (operacao) {
+                        case "1":
+                            resultado = soma(num1, num2);
+                            alert(`Resultado: ${resultado}`);
+                            break;
+                        case "2":
+                            resultado = subtracao(num1, num2);
+                            alert(`Resultado: ${resultado}`);
+                            break;
+                        case "3":
+                            resultado = multiplicacao(num1, num2);
+                            alert(`Resultado: ${resultado}`);
+                            break;
+                        case "4":
+                            resultado = divisao(num1, num2);
+                            if (resultado !== null) {
+                                alert(`Resultado: ${resultado}`);
+                            }
+                            break;
+                        default:
+                            alert("Opção inválida. Tente novamente.");
+                            break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora Simples</h1>
+    <button onclick="calculadora()">Iniciar Calculadora</button>
+</body>
+</html>
