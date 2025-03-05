@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Escolhas - Carreira em TI</title>
+</head>
+<body>
+    <script>
+        function iniciarJogo() {
+            let area = prompt("Você quer seguir para a área de Front-End ou Back-End? (Digite 'Front' ou 'Back')");
+            let tecnologia;
+            
+            if (area.toLowerCase() === "front") {
+                tecnologia = prompt("Você quer aprender React ou Vue? (Digite 'React' ou 'Vue')");
+            } else if (area.toLowerCase() === "back") {
+                tecnologia = prompt("Você quer aprender C# ou Java? (Digite 'C#' ou 'Java')");
+            } else {
+                alert("Opção inválida. Reinicie o jogo.");
+                return;
+            }
+            
+            let caminho = prompt("Você quer se especializar na sua área escolhida ou se tornar Fullstack? (Digite 'Especializar' ou 'Fullstack')");
+            
+            if (caminho.toLowerCase() === "especializar") {
+                alert(`Ótima escolha! Continue se aprofundando em ${tecnologia} para se tornar um expert em ${area}-End.`);
+            } else if (caminho.toLowerCase() === "fullstack") {
+                alert(`Muito bom! Expandir seu conhecimento para Fullstack abrirá muitas portas para você no mundo da tecnologia.`);
+            } else {
+                alert("Opção inválida. Reinicie o jogo.");
+                return;
+            }
+            
+            let tecnologias = [];
+            let maisTecnologias = true;
+            
+            while (maisTecnologias) {
+                let novaTecnologia = prompt("Digite uma tecnologia que você gostaria de aprender:");
+                tecnologias.push(novaTecnologia);
+                maisTecnologias = confirm("Tem mais alguma tecnologia que você gostaria de aprender?");
+            }
+            
+            alert("Que legal! Aqui está a sua lista de tecnologias para aprender: " + tecnologias.join(", "));
+        }
+        
+        iniciarJogo();
+    </script>
+</body>
+</html>
