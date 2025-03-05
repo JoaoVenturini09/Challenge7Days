@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <script>
+        // Função principal que executa o programa
+        function listaDeCompras() {
+            let compras = {
+                Frutas: [],
+                Laticínios: [],
+                Congelados: [],
+                Doces: [],
+                Outros: []
+            };
+
+            function adicionarComida() {
+                let adicionar = prompt("Você deseja adicionar uma comida à sua lista de compras? (sim/não)").toLowerCase();
+                
+                if (adicionar === "sim") {
+                    let comida = prompt("Qual comida você deseja inserir?");
+                    let categoria = prompt("Em qual categoria essa comida se encaixa? Opções: Frutas, Laticínios, Congelados, Doces, Outros").toLowerCase();
+
+                    // Adiciona a comida na categoria correspondente
+                    if (categoria === "frutas") {
+                        compras.Frutas.push(comida);
+                    } else if (categoria === "laticínios") {
+                        compras.Laticínios.push(comida);
+                    } else if (categoria === "congelados") {
+                        compras.Congelados.push(comida);
+                    } else if (categoria === "doces") {
+                        compras.Doces.push(comida);
+                    } else {
+                        compras.Outros.push(comida);
+                    }
+
+                    // Chama a função novamente para permitir adicionar mais itens
+                    adicionarComida();
+                } else if (adicionar === "não") {
+                    // Quando o usuário não quiser mais adicionar itens, exibe a lista agrupada
+                    exibirLista();
+                } else {
+                    alert("Resposta inválida. Por favor, responda com 'sim' ou 'não'.");
+                    adicionarComida(); // Repete a pergunta se a resposta não for válida
+                }
+            }
+
+            function exibirLista() {
+                let lista = "Lista de compras:\n";
+                for (let categoria in compras) {
+                    if (compras[categoria].length > 0) {
+                        lista += `${categoria.charAt(0).toUpperCase() + categoria.slice(1)}: ${compras[categoria].join(", ")}\n`;
+                    }
+                }
+                alert(lista);
+            }
+
+            adicionarComida(); // Inicia a função para adicionar comida
+        }
+    </script>
+</head>
+<body>
+    <h1>Teste de Lista de Compras</h1>
+    <button onclick="listaDeCompras()">Iniciar Lista de Compras</button>
+</body>
+</html>
