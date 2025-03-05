@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <h1>Jogo de Adivinhação</h1>
+    <p>Tente adivinhar o número entre 0 e 10.</p>
+    <input type="number" id="chute" min="0" max="10">
+    <button onclick="verificarChute()">Chutar</button>
+    <p id="resultado"></p>
+
+    <script>
+        const numeroCorreto = Math.floor(Math.random() * 11);
+        let tentativas = 3;
+
+        function verificarChute() {
+            let chute = parseInt(document.getElementById("chute").value);
+            let resultado = document.getElementById("resultado");
+
+            if (tentativas > 0) {
+                if (chute === numeroCorreto) {
+                    resultado.innerHTML = "🎉 Parabéns! Você acertou o número!";
+                } else {
+                    tentativas--;
+                    if (tentativas > 0) {
+                        resultado.innerHTML = `❌ Errado! Você tem mais ${tentativas} tentativa(s).`;
+                    } else {
+                        resultado.innerHTML = `😢 Você perdeu! O número correto era ${numeroCorreto}.`;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
